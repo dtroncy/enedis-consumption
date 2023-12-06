@@ -1,0 +1,5 @@
+package enedisconsumption
+
+func enedisConsumption() {
+
+}
