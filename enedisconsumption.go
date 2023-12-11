@@ -1,27 +1,19 @@
 package enedisconsumption
 
-import "fmt"
+func GetDailyConsumption(start string, end string) []byte {
 
-func GetDailyConsumption(start string, end string) {
-
-	response := requestGET("https://conso.boris.sh/api/daily_consumption", start, end)
-
-	fmt.Println(string(response))
+	return requestGET("https://conso.boris.sh/api/daily_consumption", start, end)
 
 }
 
-func GetConsumptionLoadCurve(start string, end string) {
+func GetConsumptionLoadCurve(start string, end string) []byte {
 
-	response := requestGET("https://conso.boris.sh/api/consumption_load_curve", start, end)
-
-	fmt.Println(string(response))
+	return requestGET("https://conso.boris.sh/api/consumption_load_curve", start, end)
 
 }
 
-func GetConsumptionMaxPower(start string, end string) {
+func GetConsumptionMaxPower(start string, end string) []byte {
 
-	response := requestGET("https://conso.boris.sh/api/consumption_max_power", start, end)
-
-	fmt.Println(string(response))
+	return requestGET("https://conso.boris.sh/api/consumption_max_power", start, end)
 
 }
