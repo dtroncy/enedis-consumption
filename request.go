@@ -2,11 +2,12 @@ package enedisconsumption
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 )
 
-func requestGET(url string, start string, end string) (*http.Response, error) {
+func requestGET(url string, start string, end string) ([]byte, error) {
 
 	configFile := "conf.json"
 
@@ -33,13 +34,18 @@ func requestGET(url string, start string, end string) (*http.Response, error) {
 
 	req.Header.Add("Authorization", "Bearer "+config.Token)
 
-	response, err := client.Do(req)
+	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Println("Erreur lors de l'envoi de la requête")
+		fmt.Println("Erreur lors de l'execution de la requête")
 	}
 
-	defer response.Body.Close()
+	defer resp.Body.Close()
 
-	return response, err
+	responseBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return responseBody, err
 
 }
